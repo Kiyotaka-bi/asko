@@ -1,0 +1,17 @@
+<h1>{{ object.title }}</h1>
+<p>{{ object.description }}</p>
+<p>Рейтинг: {{ object.rating }}</p>
+
+<h3>Комментарии</h3>
+
+{% for comment in object.comments.all %}
+    <p>{{ comment.user }}: {{ comment.text }}</p>
+{% endfor %}
+
+{% if user.is_authenticated %}
+<form method="post">
+    {% csrf_token %}
+    {{ form }}
+    <button type="submit">Отправить</button>
+</form>
+{% endif %}

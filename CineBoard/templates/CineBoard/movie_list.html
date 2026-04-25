@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Movies</title>
+</head>
+<body>
+
+<h1>Список фильмов</h1>
+
+<form method="get">
+    <input type="text" name="q" placeholder="Поиск">
+    <button type="submit">Найти</button>
+</form>
+
+<hr>
+
+{% for movie in movies %}
+
+    
+    {% if movie.image %}
+        <img src="{{ movie.image.url }}" width="120" alt="movie image">
+    {% else %}
+        <img src="https://source.unsplash.com/200x300/?movie,cinema" width="120" alt="default image">
+    {% endif %}
+
+    <h2>{{ movie.title }}</h2>
+    <p>Рейтинг: {{ movie.rating }}</p>
+
+    <a href="{% url 'movie_detail' movie.pk %}">Подробнее</a>
+
+    <hr>
+
+{% endfor %}
+
+</body>
+</html>
